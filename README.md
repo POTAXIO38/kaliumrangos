@@ -159,7 +159,7 @@
                 <li>Prefijo en el chat en cualquier modalidad.</li>
                 <li>Canal Privado con miembros de su mismo rango.</li>
                 <li>Survival Kit Vip (puedes ver qué contiene con /kit), se reclama cada 2 meses.</li>
-                <li>Una fila más de espacio en la mochila.</li>
+                <li>Acceso a una segunda mochila.</li>
                 <li>BoxPvP: Se consigue directamente el kit de la segunda mina.</li>
                 <li>¡Próximamente más mejoras!</li>
             </ul>
