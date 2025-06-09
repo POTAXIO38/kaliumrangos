@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rangos Media - KaliumRango</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@300;400&display=swap');
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #0f1c2d; /* Negro azulado muy oscuro para el fondo */
+            color: #e0e0e0; /* Texto claro */
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #1a2a3a; /* Azul oscuro para el contenedor principal */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            color: #5b9bd5; /* Azul medio para el título principal */
+            margin-bottom: 40px;
+            font-size: 2.8em;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .intro-text {
+            font-size: 1.1em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #c0c0c0;
+        }
+
+        .common-benefit-note {
+            background-color: #2a3d52;
+            border-left: 5px solid #5b9bd5;
+            padding: 15px;
+            margin: 30px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #d0e7ff;
+            font-size: 1em;
+            text-align: center;
+        }
+
+        .rank-section {
+            background-color: #2a3d52; /* Azul grisáceo para las tarjetas de rango */
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .rank-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .rank-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2em;
+            margin-top: 0;
+            border-bottom: 2px solid rgba(208, 231, 255, 0.5);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .rank-section h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: #d0e7ff;
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px dashed rgba(208, 231, 255, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .rank-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .rank-section ul li {
+            background-color: #3b5066; /* Azul más oscuro para los ítems de la lista */
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .rank-section ul li:last-child {
+            margin-bottom: 0;
+        }
+
+        .rank-section ul li::before {
+            margin-right: 10px;
+            font-size: 1.2em;
+            line-height: 1.5; /* Align with text */
+        }
+
+        .rank-section p {
+            font-size: 1.1em;
+            color: #c0c0c0;
+            margin-bottom: 15px;
+        }
+
+        /* Colores y símbolos específicos para cada rango */
+        .famoso h2 { color: #ffeb3b; border-color: rgba(255, 235, 59, 0.5); } /* Amarillo para Famoso */
+        .famoso h2::before { content: '🌟'; margin-right: 10px;}
+        .famoso ul li { background-color: #5a573a; }
+        .famoso ul li::before { content: '✅'; color: #9cd55b; } /* Checkmark para beneficios */
+
+        .streamer h2 { color: #9c27b0; border-color: rgba(156, 39, 176, 0.5); } /* Morado para Streamer */
+        .streamer h2::before { content: '👾'; margin-right: 10px;}
+        .streamer ul li { background-color: #573a5a; }
+        .streamer ul li::before { content: '✅'; color: #9cd55b; }
+
+        .youtuber h2 { color: #f44336; border-color: rgba(244, 67, 54, 0.5); } /* Rojo para Youtuber */
+        .youtuber h2::before { content: '🎬'; margin-right: 10px;}
+        .youtuber ul li { background-color: #5a3a3a; }
+        .youtuber ul li::before { content: '✅'; color: #9cd55b; }
+
+        .tiktoker h2 { color: #ff9800; border-color: rgba(255, 152, 0, 0.5); } /* Naranja para Tiktoker */
+        .tiktoker h2::before { content: '📱'; margin-right: 10px;}
+        .tiktoker ul li { background-color: #5a4a3a; }
+        .tiktoker ul li::before { content: '✅'; color: #9cd55b; }
+
+        .media h2 { color: #4CAF50; border-color: rgba(76, 175, 80, 0.5); } /* Verde para Media */
+        .media h2::before { content: '🌱'; margin-right: 10px;}
+        .media ul li { background-color: #3a5a3a; }
+        .media ul li::before { content: '✅'; color: #9cd55b; }
+
+        .requirement-list li::before {
+            content: '📌'; /* Pin icon for requirements */
+            color: #5b9bd5;
+        }
+
+        .offer-list li::before {
+            content: '🎁'; /* Gift icon for offers */
+            color: #9cd55b;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid #2a3d52;
+            color: #808080;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌟 Rangos Media 🌟</h1>
+
+        <p class="intro-text">¡Bienvenido a la sección de rangos para creadores de contenido en Kalium! Si cumples los requisitos, podrás disfrutar de beneficios exclusivos y unirte a nuestra comunidad de creadores.</p>
+
+        <div class="common-benefit-note">
+            🎥 Beneficio Común: Todos los rangos (excepto Rango MEDIA) ofrecen la posibilidad de publicar vuestro contenido (videos, directos, clips) en el canal de spam de nuestro Discord.
+        </div>
+
+        ---
+
+        <div class="rank-section famoso">
+            <h2>Rango FAMOSO</h2>
+            <p>El rango FAMOSO es para nuestros creadores de contenido con mayor impacto y reconocimiento.</p>
+            <h3>Requisitos:</h3>
+            <ul class="requirement-list">
+                <li>YouTube: 1.000 Suscriptores | + 5000 Visitas por video.</li>
+                <li>Twitch/Plataformas de Directo: 1.000 Seguidores | + 15 Espectadores promedio por directo.</li>
+                <li>Actividad: Un video cada dos semanas en YouTube.</li>
+                <li>Actividad: Una hora de directo a la semana en Twitch/otras plataformas.</li>
+            </ul>
+            <h3>Ofrece:</h3>
+            <ul class="offer-list">
+                <li>Prefijo "FAMOSO" en Minecraft.</li>
+                <li>Kit Famoso (puedes ver lo que contiene el kit con /kit en el servidor).</li>
+                <li>Todos los beneficios de los rangos inferiores.</li>
+                <li>Acceso a canales privados de Creadores de Contenido.</li>
+            </ul>
+        </div>
+
+        ---
+
+        <div class="rank-section streamer">
+            <h2>Rango STREAMER</h2>
+            <p>Para aquellos que disfrutan transmitiendo en vivo su experiencia en Kalium y construyendo su comunidad.</p>
+            <h3>Requisitos:</h3>
+            <ul class="requirement-list">
+                <li>Twitch/Plataformas de Directo: + 150 Seguidores | + 5-7 espectadores promedio por directo.</li>
+                <li>Actividad: Dos horas de directo a la semana.</li>
+            </ul>
+            <h3>Ofrece:</h3>
+            <ul class="offer-list">
+                <li>Prefijo "STREAMER" en Minecraft.</li>
+                <li>Kit Streamer (puedes ver lo que contiene el kit con /kit en el servidor).</li>
+                <li>Recomendación de tu cuenta en el canal de Potaxio.</li>
+                <li>Acceso a canales privados de Creadores de Contenido.</li>
+            </ul>
+        </div>
+
+        ---
+
+        <div class="rank-section youtuber">
+            <h2>Rango YOUTUBER</h2>
+            <p>Dedicado a creadores que suben videos de kalium, como una serie survival o clips de sus mejores kills en boxpvp.</p>
+            <h3>Requisitos:</h3>
+            <ul class="requirement-list">
+                <li>YouTube: + 200 Suscriptores | + 250 Visitas promedio por video.</li>
+                <li>Actividad: Un video a la semana.</li>
+            </ul>
+            <h3>Ofrece:</h3>
+            <ul class="offer-list">
+                <li>Prefijo "YOUTUBER" en Minecraft.</li>
+                <li>Kit Youtube (puedes ver lo que contiene el kit con /kit en el servidor).</li>
+                <li>Acceso a canales privados de Creadores de Contenido.</li>
+            </ul>
+        </div>
+
+        ---
+
+        <div class="rank-section tiktoker">
+            <h2>Rango TIKTOKER</h2>
+            <p>Para los creadores de videos cortos que captan la atención en TikTok.</p>
+            <h3>Requisitos:</h3>
+            <ul class="requirement-list">
+                <li>TikTok: + 300 Seguidores | + 400 Visitas promedio por video.</li>
+                <li>Actividad: Un video a la semana.</li>
+            </ul>
+            <h3>Ofrece:</h3>
+            <ul class="offer-list">
+                <li>Prefijo "TIKTOK" en Minecraft.</li>
+                <li>Kit Tiktok (puedes ver lo que contiene el kit con /kit en el servidor).</li>
+                <li>Acceso a canales privados de Creadores de Contenido.</li>
+            </ul>
+        </div>
+
+        ---
+
+        <div class="rank-section media">
+            <h2>Rango MEDIA</h2>
+            <p>Este rango es para creadores de contenido pequeños que aún no cumplen los requisitos de los rangos superiores.</p>
+            <h3>Requisitos:</h3>
+            <ul class="requirement-list">
+                <li>Un video o directo de prueba (2 horas) o 2 videos cortos en caso de Tiktok.</li>
+            </ul>
+            <h3>Ofrece:</h3>
+            <ul class="offer-list">
+                <li>Kit Media (puedes ver lo que contiene el kit con /kit en el servidor).</li>
+                <li>Importante:No podrás publicar tu contenido en el canal spam de Discord con este rango.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Kalium. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
